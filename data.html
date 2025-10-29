@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <title>MESH カウント表示</title>
@@ -9,10 +10,11 @@
             text-align: center;
             padding-top: 50px;
             background: #f0f8ff;
-        }
+
         .countWrap{
             padding: 20px;
         }
+
 
         #count {
             font-size: 48px;
@@ -20,6 +22,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>振られた回数</h1>
     <div class="countWrap">
@@ -29,6 +32,7 @@
     <img id="testImg" src="images/salad1.png" alt="">
 
     <script>
+
         let count = document.getElementById("count");
         const resetBtn = document.getElementById("resetBtn");
         let = document.getElementsByClassName("testImg");
@@ -57,6 +61,26 @@
             body: new URLSearchParams({ intensity: 0 })
         });
     });    
+=======
+        setInterval(() => {
+            fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/request.txt")
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById("count").textContent = text;
+                })
+                .catch(error => {
+                    console.error("読み込みエラー:", error);
+                });
+        }, 100);
+
+        document.getElementById("resetBtn").addEventListener("click", () => {
+            fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/data.php", {
+                method: "POST",
+                body: new URLSearchParams({ intensity: 0 })
+            });
+        });    
+
     </script>
 </body>
+
 </html>
