@@ -11,14 +11,15 @@
             padding-top: 50px;
             background: #f0f8ff;
 
-        .countWrap{
-            padding: 20px;
-        }
+            .countWrap {
+                padding: 20px;
+            }
 
 
-        #count {
-            font-size: 48px;
-            color: #007acc;
+            #count {
+                font-size: 48px;
+                color: #007acc;
+            }
         }
     </style>
 </head>
@@ -37,30 +38,30 @@
         const resetBtn = document.getElementById("resetBtn");
         let = document.getElementsByClassName("testImg");
 
-    setInterval(() => {
-        fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/request.txt")
-        .then(response => response.text())
-        .then(text => {
-            const num = parseInt(text, 10);
-            count.textContent = num;
+        setInterval(() => {
+            fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/request.txt")
+                .then(response => response.text())
+                .then(text => {
+                    const num = parseInt(text, 10);
+                    count.textContent = num;
 
-            if (num >= 20) {
-                testImg.src = "images/salad2.png";
-            } else {
-                testImg.src = "images/salad1.png";
-            }
-        })
-        .catch(error => {
-            console.error("読み込みエラー:", error);
-        });
-    }, 100);
+                    if (num >= 20) {
+                        testImg.src = "images/salad2.png";
+                    } else {
+                        testImg.src = "images/salad1.png";
+                    }
+                })
+                .catch(error => {
+                    console.error("読み込みエラー:", error);
+                });
+        }, 100);
 
-    resetBtn.addEventListener("click", () => {
-        fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/data.php", {
-            method: "POST",
-            body: new URLSearchParams({ intensity: 0 })
+        resetBtn.addEventListener("click", () => {
+            fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/data.php", {
+                method: "POST",
+                body: new URLSearchParams({ intensity: 0 })
+            });
         });
-    });    
 =======
         setInterval(() => {
             fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/request.txt")
@@ -78,7 +79,7 @@
                 method: "POST",
                 body: new URLSearchParams({ intensity: 0 })
             });
-        });    
+        });
 
     </script>
 </body>
