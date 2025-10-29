@@ -10,6 +10,10 @@
             padding-top: 50px;
             background: #f0f8ff;
         }
+        .countWrap{
+            padding: 20px;
+        }
+
         #count {
             font-size: 48px;
             color: #007acc;
@@ -18,22 +22,36 @@
 </head>
 <body>
     <h1>振られた回数</h1>
-    <div id="count">0</div>
-    <button id="resetBtn">リセット</button>
+    <div class="countWrap">
+        <div id="count">0</div>
+        <button id="resetBtn">リセット</button>
+    </div>
+    <img id="testImg" src="images/salad1.png" alt="">
 
     <script>
+        let count = document.getElementById("count");
+        const resetBtn = document.getElementById("resetBtn");
+        let = document.getElementsByClassName("testImg");
+
     setInterval(() => {
         fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/request.txt")
         .then(response => response.text())
         .then(text => {
-            document.getElementById("count").textContent = text;
+            const num = parseInt(text, 10);
+            count.textContent = num;
+
+            if (num >= 20) {
+                testImg.src = "images/salad2.png";
+            } else {
+                testImg.src = "images/salad1.png";
+            }
         })
         .catch(error => {
             console.error("読み込みエラー:", error);
         });
     }, 100);
 
-    document.getElementById("resetBtn").addEventListener("click", () => {
+    resetBtn.addEventListener("click", () => {
         fetch("https://click.ecc.ac.jp/ecc/kkanaya/works/2/Sizen/php/data.php", {
             method: "POST",
             body: new URLSearchParams({ intensity: 0 })
